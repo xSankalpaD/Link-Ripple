@@ -1,20 +1,27 @@
 .background {
     position: relative;
-    background-image: url('/images/background-desktop.jpg');
+    background-image: url("/images/peakpx.jpg");
+    
 }
 
-.background::after {
-    content: "";
+.clash {
+    background-image: url("https://c.tenor.com/MOZ0kG5WZ2wAAAAC/tenor.gif");
+    background-size: cover;
+}
+
+.background::before{
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+    top:0;
+    left:0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
 }
-
 @media screen and (max-width: 768px) {
     .background {
-        background-image: url('/images/background-mobile.jpg');
+        
+        background-image: url("/images/peakpx mobile.jpg");
+        
     }
 }
