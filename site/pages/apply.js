@@ -18,7 +18,28 @@ const Apply = () => {
     e.preventDefault();
     if(!category) return toast.error("Add a category.");
     //backend call
-    toast('Successfully Registered!')
+    fetch('http://localhost:8080/api/register', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'    
+      },
+      body: JSON.stringify({
+        handle,
+        email,
+        password,
+        category
+      })
+    }).then(res=> res.json())
+    .then(data => {
+      if (data.message=== 'success'){
+        toast('Successfully Registered!')
+        localStorage.setItem('LinkTreeToken', data.token);
+      }
+
+    }).catch(err=>{
+      toast('Try a different username or email');
+    })
+    
   }
 
   return (
