@@ -25,7 +25,19 @@ const registerUser = async(req, res) => {
 }
 
 const loginUser = (req, res) => {
-    res.send("Login");
+    const {email, password} = req.body;
+    try{
+        const user= User.findOne({email: email, password: password});
+        console.log(user)
+        if(!user){
+            return res.json({status: 'not found', error: 'Invalid credentials'})
+        }
+        const token= jwt.sign({email: email}, process.env.SECRET_JWT);
+        return res.json({message:'user found', status: 'success', 'token': token, id: user._id}); //mongodb object id is stored as '_id'
+    }
+    catch(err){
+        return res.json({message: err.message, status: 'error!'});
+    }
 }
 
 module.exports = {registerUser, loginUser};
