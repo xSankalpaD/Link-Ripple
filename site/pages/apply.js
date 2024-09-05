@@ -1,27 +1,30 @@
-import React, { useState } from 'react'
-import styles from '../styles/apply.module.css'
-import {toast} from 'react-toastify'
-import Link from 'next/link'
-
+import React, { useState } from "react";
+import styles from "../styles/apply.module.css";
+import Footer from "../components/Footer";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import { useRouter } from "next/router";
+ 
 const Apply = () => {
-  
-  const [handle, setHandle]= useState('');
-  const [email, setEmail]= useState('');
-  const [password, setPassword]= useState('');
-  const [category, setCategory] = useState('');
-
+  const router = useRouter();
+  const [handle, setHandle] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [category, setCategory] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+ 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-  }
-
+  };
+ 
   const handleRegister = (e) => {
     e.preventDefault();
-    if(!category) return toast.error("Add a category.");
-    //backend call
-    fetch('http://localhost:8080/api/register', {
-      method: 'POST',
+    if (!category) return toast.error("Add a category");
+    // backend part
+    fetch("http://localhost:8080/api/register", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json'    
+        "content-type": "application/json"
       },
       body: JSON.stringify({
         handle,
@@ -29,57 +32,122 @@ const Apply = () => {
         password,
         category
       })
-    }).then(res=> res.json())
-    .then(data => {
-      if (data.message=== 'success'){
-        toast('Successfully Registered!')
-        localStorage.setItem('LinkTreeToken', data.token);
-      }
-
-    }).catch(err=>{
-      toast('Try a different username or email');
     })
-    
-  }
-
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          toast("You are registered successfully");
+          localStorage.setItem("LinkTreeToken", data.token);
+          setSubmitted(true);
+          router.push("/login");
+        }
+      })
+      .catch((err) => {
+        toast.error("Try a different username");
+      });
+  };
   return (
     <>
-      {/*we need the white space so that the styles are seperated by space*/}
-      <section className={styles.background + " min-h-screen flex justify-center items-center"}>{/*min h cover whole screen and center it*/}
+      <section
+        className={
+          styles.background + " min-h-screen flex justify-center items-center"
+        }
+      >
         <div className="main">
-          <div className="content border px-4 py-8 rounded-2xl shadow-md bg-white">
-            <h1 className="text-2xl font-bold text-center">Join the top 1% creators</h1>
+          <div className="content bg-white border-2 px-4 py-8 rounded-2xl shadow-lg">
+            <h1 className="text-2xl font-bold text-center">
+              Join the top 1% creators
+            </h1>
             <p className="text-center">Create Linktree for your brand</p>
-            <p className='text-center py-5 font-bold text-gray-500'>Start Building here</p>
-            <form onSubmit={handleRegister} className="flex flex-col gap-4 text-lg mt-5">
-              <input value={handle} onChange={e=>setHandle(e.target.value)} className="shadow-md border-2 px-3 py-2 rounded-md " type="text" placeholder="Social Handle" required/>
-              <input value={email} onChange={e=>setEmail(e.target.value)} className="shadow-md border-2 px-3 py-2 rounded-md " type="email" placeholder="Enter your email" required/>
-              <input value={password} onChange={e=>setPassword(e.target.value)} className="shadow-md border-2 px-3 py-2 rounded-md " type="password" placeholder= 'Set a password' required/>
-              
-              <h5 className='text-sm text-center'>Account Type:</h5>
+            <p className="text-center py-5 font-bold text-gray-500">
+              Start building your Hub
+            </p>
+            <form
+              onSubmit={handleRegister}
+              className="flex flex-col gap-4 text-lg mt-5"
+            >
+              <span className="flex flex-row shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
+                <img className="w-6 mr-2" src="/svg/ig.svg" alt="" />
+                <input
+                  value={handle}
+                  onChange={(e) => setHandle(e.target.value)}
+                  className="focus:outline-none"
+                  type="text"
+                  placeholder="Social Handle"
+                  required
+                />
+              </span>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="shadow-md border-2 px-3 py-2 rounded-md focus:outline-none"
+                type="email"
+                placeholder="Enter your email"
+                required
+              />
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="shadow-md border-2 px-3 py-2 rounded-md focus:outline-none"
+                type="password"
+                placeholder="Set a password"
+                required
+              />
+ 
+              <h5 className="text-sm text-center text-indigo-400">
+                Account Type:
+              </h5>
               <span className="flex">
                 <label className="flex flex-row mr-3">
-                  <input type="checkbox" className="px-2" value="Creator" checked={category==='Creator'} onChange={handleCategoryChange}/>
+                  <input
+                    type="checkbox"
+                    className=""
+                    value="Creator"
+                    checked={category === "Creator"}
+                    onChange={handleCategoryChange}
+                  />
                   <p className="pl-2">Creator</p>
                 </label>
                 <label className="flex flex-row mr-3">
-                  <input type="checkbox" className="px-2" value="Agency" checked={category==='Agency'} onChange={handleCategoryChange}/>
+                  <input
+                    type="checkbox"
+                    className=""
+                    value="Agency"
+                    checked={category === "Agency"}
+                    onChange={handleCategoryChange}
+                  />
                   <p className="pl-2">Agency</p>
                 </label>
                 <label className="flex flex-row mr-3">
-                  <input type="checkbox" className="px-2" value="Brand" checked={category==='Brand'} onChange={handleCategoryChange}/>
+                  <input
+                    type="checkbox"
+                    className=""
+                    value="Brand"
+                    checked={category === "Brand"}
+                    onChange={handleCategoryChange}
+                  />
                   <p className="pl-2">Brand</p>
                 </label>
               </span>
-              <input className="bg-indigo-600 text-white py-3 rounded-lg cursor-pointer" type="submit" value="Register" />
+              <input
+                className="bg-indigo-600 text-white py-2 rounded-lg cursor-pointer"
+                type="submit"
+                value="Apply"
+              />
             </form>
           </div>
-          <h4 className='text-center text-white pt-5'>Already have an account? <Link href="/login" className='font-bold'>Login </Link> </h4>
+          <h4 className="text-center text-white pt-3">
+            Already have an account?{" "}
+            <Link className="font-bold text-red-400" href="/login">
+              Login
+            </Link>
+          </h4>
         </div>
       </section>
-    </>    
-  
-  )
-}
-
-export default Apply
+      <Footer />
+    </>
+  );
+};
+ 
+export default Apply;
