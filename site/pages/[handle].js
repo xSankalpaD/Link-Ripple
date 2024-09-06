@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import LinkTree from '../components/LinkTree'
-import SocialTree from '../components/SocialTree'
+import SocialTree from '../components/SocialTree' 
+import Link from 'next/link'
+import ShareButton from '@/components/ShareButton'
 
 const Handle = () => {
 
@@ -26,8 +28,26 @@ const Handle = () => {
           if (data.status === 'error') return toast.error(data.error);
           if (data.status === 'success') {
             setData(data.userData);
-            setSocial(data.socials)
+            
             setUserFound(true);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }, [router.query])
+
+  useEffect(() => {
+    if (router.query?.handle) {
+      fetch(`http://localhost:8080/get/socials/${router.query.handle}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'error') return toast.error(data.error);
+          if (data.status === 'success') {
+            
+            setSocial(data.socials)
+            
           }
         })
         .catch(err => {
@@ -57,7 +77,7 @@ const Handle = () => {
 
   return (
     <div>
-      <ShareButton />
+      <ShareButton/>
       <LinkTree data={data} />
       <SocialTree social={social} />
     </div>
