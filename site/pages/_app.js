@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return(
-    <div className="h-screen">
+    <div className="flex flex-col min-h-screen">
       <NavBar/>
       <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-WYTYXQXVK6`} />
       <Script strategy="lazyOnload">
@@ -48,7 +48,9 @@ export default function App({ Component, pageProps }) {
                       });
                   `}
       </Script>
-      <Component {...pageProps} />
+      <main className="flex flex-grow flex-col justify-center items-center">
+        <Component {...pageProps} />
+      </main>
       <ToastContainer />
       {isLoading && <div className="nprogress-custom-parent"><div className="nprogress-custom-bar"/></div>}
 
