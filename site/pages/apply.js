@@ -51,24 +51,21 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " min-h-screen flex justify-center items-center"
+          styles.background + " h-full flex justify-center pt-12"
         }
       >
         <div className="main">
           <div className="content bg-white border-2 px-4 py-8 rounded-2xl shadow-lg">
-            <h1 className="text-2xl font-bold text-center">
-              Join the top 1% creators
+            <h1 className="text-2xl font-bold text-center pb-">
+              One link,<br></br> Endless possibilities!
             </h1>
-            <p className="text-center">Create Linktree for your brand</p>
-            <p className="text-center py-5 font-bold text-gray-500">
-              Start building your Hub
-            </p>
+            <p className="text-center">Create your Linktree today</p>
+            
             <form
               onSubmit={handleRegister}
               className="flex flex-col gap-4 text-lg mt-5"
             >
               <span className="flex flex-row shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
-                <img className="w-6 mr-2" src="/svg/ig.svg" alt="" />
                 <input
                   value={handle}
                   onChange={(e) => setHandle(e.target.value)}
@@ -139,13 +136,13 @@ const Apply = () => {
           </div>
           <h4 className="text-center text-white pt-3">
             Already have an account?{" "}
-            <Link className="font-bold text-red-400" href="/login">
+            <Link className="font-bold text-purple-400" href="/login">
               Login
             </Link>
           </h4>
         </div>
       </section>
-      <Footer />
+      
     </>
   );
 };
