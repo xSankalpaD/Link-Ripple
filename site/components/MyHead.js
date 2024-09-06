@@ -9,7 +9,7 @@ export default function MyHead({ title, description, image, url }) {
             <meta property="og:description" content={description} key="description" />
             <meta property="og:image" content={image} key="image" />
             <meta property="og:url" content={url} key="url" />
-            <link rel="icon" href="/images/favicon.ico" />
+            <link rel="icon" href="/images/single.png" />
 
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />

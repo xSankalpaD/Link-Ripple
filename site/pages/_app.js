@@ -35,24 +35,23 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return(
-    <>
-    <NavBar/>
-    <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-WYTYXQXVK6`} />
-    <Script strategy="lazyOnload">
-                {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-WYTYXQXVK6', {
-                    page_path: window.location.pathname,
-                    });
-                `}
-    </Script>
-    <Component {...pageProps} />
-    <ToastContainer />
-    {isLoading && <div className="nprogress-custom-parent"><div className="nprogress-custom-bar"/></div>}
-    <Footer/>
+    <div className="h-screen">
+      <NavBar/>
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-WYTYXQXVK6`} />
+      <Script strategy="lazyOnload">
+                  {`
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', 'G-WYTYXQXVK6', {
+                      page_path: window.location.pathname,
+                      });
+                  `}
+      </Script>
+      <Component {...pageProps} />
+      <ToastContainer />
+      {isLoading && <div className="nprogress-custom-parent"><div className="nprogress-custom-bar"/></div>}
 
-    </>
+    </div>
   ) 
 }

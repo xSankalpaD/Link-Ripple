@@ -6,9 +6,11 @@ mongoose.set('strictQuery', false);
 
 const {registerUser, loginUser} = require('./controllers/auth');
 require('dotenv').config();
-
+const {dashBoardData} = require('./controllers/dashboard');
 app.use(cors());
 app.use(express.json());
+
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/linkTree')
     .then(() => {
@@ -25,8 +27,10 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/api/register', registerUser)
-app.post('/api/login', loginUser)
+app.post('/api/register', registerUser);
+app.post('/api/login', loginUser);
+
+app.post('/data/dashboard', dashBoardData);
 
 const port = process.env.PORT || 8080;
 
