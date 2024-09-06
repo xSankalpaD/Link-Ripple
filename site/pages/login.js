@@ -42,7 +42,7 @@ const Apply = () => {
     <>
       <section
         className={
-          styles.background + " h-full flex justify-center pt-12"
+          styles.background + " w-full h-full flex flex-grow items-center justify-center"
         }
       >
         <div className="main">

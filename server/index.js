@@ -15,10 +15,10 @@ app.use(express.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/linkTree')
     .then(() => {
-        console.log(`mongodb Connected`)
+        console.log('MongoDB Connected');
     })
     .catch(err => {
-        toast.error('Username or Email already in use!')
+        console.log('MongoDB connection failed.');
     });
 
     

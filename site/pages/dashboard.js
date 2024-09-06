@@ -30,7 +30,7 @@ const dashboard = () => {
   
   return (
     <>
-      <div className="">
+      <div className="w-full h-full flex flex-col flex-grow">
         <UserHeader data={data} />
         <main>
           <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
@@ -44,18 +44,6 @@ const dashboard = () => {
               lbTitle="Growth"
               lbNumber="30%"
               lbSvg="growth"
-              lbTheme="blue"
-            />
-            <LinkBox
-              lbTitle="Links"
-              lbNumber="12"
-              lbSvg="email"
-              lbTheme="red"
-            />
-            <LinkBox
-              lbTitle="Growth"
-              lbNumber="30%"
-              lbSvg="ig"
               lbTheme="blue"
             />
           </section>
