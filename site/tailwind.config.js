@@ -49,12 +49,22 @@ module.exports = {
             offsetDistance: '100%',
           },
         },
+        'marquee': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 1s var(--animation-delay, 0ms) ease forwards',
         'fade-up': 'fade-up 1s var(--animation-delay, 0ms) ease forwards',
         'image-glow': 'image-glow 4.1s ease-out .6s forwards',
         'border-beam': 'border-beam 12s infinite linear',
+        'marquee': 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
       },
     },
   },
