@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import LinkBox from "../components/LinkBox";
 import UserHeader from "../components/UserHeader";
 import { toast } from "react-toastify";
-import UserContext from "../components/context/userContext";
+import UserContext from "../context/userContext";
  
 const dashboard = () => {
   const [data, setData] = useState({});

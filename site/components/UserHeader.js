@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import UserContext from '../components/context/userContext';
+import UserContext from '../context/userContext';
  
 const UserHeader = () => {
     // const {name, role, avatar, handle, links} = data;
@@ -27,8 +27,8 @@ const UserHeader = () => {
         }).then(res=>res.json())
         .then(data=>{
         if(data.status==='error') return toast.error('Error happened');
-        // setData(data.userData);
-        console.log('logging from userHeader', data.userData);
+        setData(data.userData);
+        //console.log('logging from userHeader', data.userData);
         setUserData(data.userData);
         localStorage.setItem('userHandle', data.userData.handle);
         // toast.success(data.message)
