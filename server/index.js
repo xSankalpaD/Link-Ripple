@@ -35,7 +35,7 @@ app.post('/data/dashboard', dashBoardData);
 
 app.get('/get/:handle', getUserData);
 
-app.get('/get.socials/:handle', getUserSocials);
+//app.get('/get.socials/:handle', getUserSocials);
 
 const port = process.env.PORT || 8080;
 

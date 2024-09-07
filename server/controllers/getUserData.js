@@ -9,9 +9,10 @@ const getUserData = async (req, res) => {
           name: user.handle,
           avatar: user.avatar,
           bio: user.bio,
-          links: user.links,
-        };
-        return res.json({ message: 'found', userData, status: 'success'});
+          links: user.links
+        }
+        const socials = user.socialMedia;
+        return res.json({ message: 'found', userData, socials, status: 'success'});
     } catch (error) {
         console.err(error);
         return res.json({ status: 'error', error: err.message });
