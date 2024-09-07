@@ -8,7 +8,7 @@ import '../public/nprogress.css';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Script from 'next/script';
-import UserContext from "../components/context/userContext";
+import UserContext from "../context/userContext";
 
 
 export default function App({ Component, pageProps }) {
@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }) {
   const [userData, setUserData]= useState({
     name: '',
     role: '',
+    bio: '',
     avatar: '',
     handle: '', 
   })
