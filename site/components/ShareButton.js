@@ -7,7 +7,7 @@ const ShareButton = () => {
     const router = useRouter();
     const copyLink = () => {
         //its part of JS clipboard API
-        navigator.clipboard.writeText(`http://localhost:3000/${router.query.handle}`);
+        navigator.clipboard.writeText(`https://link-ripple.vercel.app/${router.query.handle}`);
         toast('Copied to Clipboard')
     }
     
