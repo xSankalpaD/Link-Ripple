@@ -59,7 +59,7 @@ const Apply = () => {
             <h1 className="text-2xl font-bold text-center pb-">
               One link,<br></br> Endless possibilities!
             </h1>
-            <p className="text-center">Create your Linktree today</p>
+            <p className="text-center">Create your Link Ripple today</p>
             
             <form
               onSubmit={handleRegister}
