@@ -12,13 +12,11 @@ const {saveSocials, saveProfile, saveLinks} = require('./controllers/saveItems')
 const {loadSocials, loadLinks} = require('./controllers/loadPrevious');
 
 app.use();
-app.use(cors(
-    {
-        origin:["https://linkripple.vercel.app"],
-        methods:["POST","GET"],
-        credentials: true
-    }
-));
+app.use(cors({
+    origin: "https://linkripple.vercel.app",
+    methods: ["POST","GET"],
+    credentials: true,
+}));
  
 
 require('dotenv');
