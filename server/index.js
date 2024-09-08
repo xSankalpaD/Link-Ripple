@@ -11,13 +11,21 @@ const {getUserData, getUserSocials} = require('./controllers/getUserData');
 const {saveSocials, saveProfile, saveLinks} = require('./controllers/saveItems');
 const {loadSocials, loadLinks} = require('./controllers/loadPrevious');
 
+// CORS configuration
 app.use(cors({
     origin: ["https://linkripple.vercel.app", "https://link-ripple.vercel.app"], // Allow both domains
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
-app.options('*', cors());
+
+// Handle preflight OPTIONS requests globally
+app.options('*', cors({
+    origin: ["https://linkripple.vercel.app", "https://link-ripple.vercel.app"],
+    credentials: true,
+    methods: ["POST", "GET", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
  
 
 require('dotenv');
