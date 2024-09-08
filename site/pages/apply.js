@@ -21,7 +21,7 @@ const Apply = () => {
     e.preventDefault();
     if (!category) return toast.error("Add a category");
     // backend part
-    fetch("http://localhost:8080/api/register", {
+    fetch("https://link-ripple.vercel.app/api/register", {
       method: "POST",
       headers: {
         "content-type": "application/json"

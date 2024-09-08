@@ -22,7 +22,7 @@ const Handle = () => {
 
   useEffect(() => {
     if (router.query?.handle) {
-      fetch(`http://localhost:8080/get/${router.query.handle}`)
+      fetch(`https://link-ripple.vercel.app/get/${router.query.handle}`)
         .then(res => res.json())
         .then(data => {
           if (data.status === 'error') return toast.error(data.error);

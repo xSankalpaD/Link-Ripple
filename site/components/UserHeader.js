@@ -18,7 +18,7 @@ const UserHeader = () => {
   useEffect(() => {
     if (!localStorage.getItem("LinkTreeToken"))
       return (window.location.href = "/login");
-    fetch("http://localhost:8080/data/dashboard", {
+    fetch("https://link-ripple.vercel.app/data/dashboard", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
