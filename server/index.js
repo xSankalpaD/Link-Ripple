@@ -12,10 +12,10 @@ const {saveSocials, saveProfile, saveLinks} = require('./controllers/saveItems')
 const {loadSocials, loadLinks} = require('./controllers/loadPrevious');
 
 app.use(cors({
-    origin: "https://linkripple.vercel.app",
+    origin: ["https://linkripple.vercel.app", "https://link-ripple.vercel.app"], // Allow both domains
     methods: ["POST", "GET"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.options('*', cors());
  
