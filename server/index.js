@@ -12,13 +12,13 @@ const {saveSocials, saveProfile, saveLinks} = require('./controllers/saveItems')
 const {loadSocials, loadLinks} = require('./controllers/loadPrevious');
 
 app.use();
-app.use(express.json(cors(
+app.use(cors(
     {
         origin:["https://linkripple.vercel.app"],
         methods:["POST","GET"],
         credentials: true
     }
-)));
+));
  
 
 require('dotenv');
@@ -44,7 +44,7 @@ app.post('/data/dashboard', dashBoardData);
 
 app.get('/get/:handle', getUserData);
 
-//app.get('/get.socials/:handle', getUserSocials);
+app.get('/get.socials/:handle', getUserSocials);
 
  
 app.post("/save/socials", saveSocials);
