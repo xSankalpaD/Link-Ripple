@@ -24,10 +24,10 @@ const registerUser = async(req, res) => {
     }
 }
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res) => {
     const {email, password} = req.body;
     try{
-        const user= User.findOne({email: email, password: password});
+        const user= await User.findOne({email: email, password: password});
         console.log(user)
         if(!user){
             return res.json({status: 'not found', error: 'Invalid credentials'})

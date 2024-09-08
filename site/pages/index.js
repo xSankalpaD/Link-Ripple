@@ -104,7 +104,7 @@ export default function Home() {
               </Marquee>
             ))}
             <div className="absolute z-10">
-              <div className="mx-auto size-24 rounded-[2rem] border p-3 shadow-2xl backdrop-blur-md bg-black/10 lg:size-32">
+              <div className="mx-auto w-[6rem] h-[6rem] rounded-[2rem] border p-3 shadow-2xl backdrop-blur-md bg-black/10 lg:size-32">
                 {marqueeIcons[3].element}
               </div>
               <div className="z-10 mt-4 flex flex-col items-center text-center text-primary">
