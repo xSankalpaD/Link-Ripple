@@ -14,8 +14,8 @@ const getUserData = async (req, res) => {
         const socials = user.socialMedia;
         return res.json({ message: 'found', userData, socials, status: 'success'});
     } catch (error) {
-        console.err(error);
-        return res.json({ status: 'error', error: err.message });
+        //console.err(error);
+        return res.json({ status: 'error', error: error.message });
     }  
 }
 

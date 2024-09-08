@@ -30,9 +30,10 @@ const Apply = () => {
           localStorage.setItem("LinkTreeToken", data.token);
           router.push("/dashboard");
         }
-        if (data.status === "not found") {
+        else if (data.status === "not found") {
           toast.error("User not found");
         }
+        
       })
       .catch((err) => {
         console.log(err);
