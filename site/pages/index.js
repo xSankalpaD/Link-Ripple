@@ -85,7 +85,7 @@ export default function Home() {
         <section>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
             {marqueeRows.map((row, index) => (
-              <Marquee reverse repeat={10} className={`${row.duration} ${row.delay}`}>
+              <Marquee key={index} reverse repeat={10} className={`${row.duration} ${row.delay}`}>
                 {marqueeIcons.map((icon, index) => (
                   <div key={index} className="flex shrink-0 justify-around [gap:var(--gap)] flex-row">
                     <motion.div
