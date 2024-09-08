@@ -1,11 +1,13 @@
 const User = require("../models/user");
 const jwt_decode = require("jwt-decode");
+const jwt = require("jsonwebtoken");
  
 const dashBoardData = async (req, res) => {
   const { tokenMail } = req.body;
   console.log(tokenMail);
   try {
-    const decodedTokenMail = jwt_decode(tokenMail, process.env.SECRET_JWT);
+    //const decodedTokenMail = jwt_decode(tokenMail, process.env.SECRET_JWT);
+    const decodedTokenMail = jwt.verify(tokenMail, process.env.SECRET_JWT);
     const email = decodedTokenMail.email;
     console.log("decoded email", email);
     const user = await User.findOne({ email: email });

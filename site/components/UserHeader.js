@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import UserContext from '../context/userContext';
+import { toast } from 'react-toastify';
  
 const UserHeader = () => {
     // const {name, role, avatar, handle, links} = data;
@@ -26,6 +27,7 @@ const UserHeader = () => {
         })
         }).then(res=>res.json())
         .then(data=>{
+        console.log('here');
         if(data.status==='error') return toast.error('Error happened');
         setData(data.userData);
         //console.log('logging from userHeader', data.userData);
