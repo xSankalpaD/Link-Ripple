@@ -1,7 +1,7 @@
 .background {
     position: relative;
-    background-image: url("/images/peakpx.jpg");
-    
+    background-image: url("/images/ripple.jpg");
+    background-size: cover;
 }
 
 .clash {

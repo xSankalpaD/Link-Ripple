@@ -26,7 +26,7 @@ const dashboard = () => {
         setData(data.userData);
         setUserData(data.userData);
         localStorage.setItem("userHandle", data.userData.handle);
-        // toast.success(data.message)
+        
       })
       .catch((err) => {
         console.log(err);
@@ -38,19 +38,15 @@ const dashboard = () => {
     <>
       <div className="w-full h-full flex flex-col flex-grow">
         <UserHeader  />
-        <main>
-          <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <main className="flex flex-col justify-center">
+          
+          
+          <section className="flex flex-row items-center justify-center pt-4">
             <LinkBox
               lbTitle="Links"
               lbNumber={data.links}
               lbSvg="url"
               lbTheme="red"
-            />
-            <LinkBox
-              lbTitle="Growth"
-              lbNumber="30%"
-              lbSvg="growth"
-              lbTheme="blue"
             />
           </section>
           <section></section>

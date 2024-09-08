@@ -38,23 +38,6 @@ const Handle = () => {
     }
   }, [router.query])
 
-  // useEffect(() => {
-  //   if (router.query?.handle) {
-  //     fetch(`http://localhost:8080/get/socials/${router.query.handle}`)
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         if (data.status === 'error') return toast.error(data.error);
-  //         if (data.status === 'success') {
-            
-  //           setSocial(data.socials)
-            
-  //         }
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       })
-  //   }
-  // }, [router.query])
 
   if (!userFound) {
     return (
@@ -86,7 +69,3 @@ const Handle = () => {
 
 export default Handle
 
-// export async function getStaticProps({params}) {
-//   const {slug} = params;
-//   const res = await fetch()
-// }
