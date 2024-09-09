@@ -21,7 +21,7 @@ const Apply = () => {
     e.preventDefault();
     if (!category) return toast.error("Add a category");
     // backend part
-    fetch("https://link-ripple.vercel.app/api/register", {
+    fetch("https://link-ripple-backend.onrender.com/api/register", {
       method: "POST",
       headers: {
         "content-type": "application/json"

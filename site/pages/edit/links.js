@@ -33,7 +33,7 @@ const links = () => {
       title: titlesArray[index]
     }));
  
-    fetch(`https://link-ripple.vercel.app/save/links`, {
+    fetch(`https://link-ripple-backend.onrender.com/save/links`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -55,7 +55,7 @@ const links = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("LinkTreeToken")) return router.push("/login");
-    fetch(`https://link-ripple.vercel.app/load/links`, {
+    fetch(`https://link-ripple-backend.onrender.com/load/links`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"

@@ -13,7 +13,7 @@ const Apply = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // backend here
-    fetch("https://link-ripple.vercel.app/api/login", {
+    fetch("https://link-ripple-backend.onrender.com/api/login", {
       method: "POST",
       headers: {
         "content-type": "application/json"
