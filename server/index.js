@@ -11,9 +11,14 @@ const {getUserData, getUserSocials} = require('./controllers/getUserData');
 const {saveSocials, saveProfile, saveLinks} = require('./controllers/saveItems');
 const {loadSocials, loadLinks} = require('./controllers/loadPrevious');
 
-// CORS configuration
-app.use(cors());
- 
+const corsOptions = {
+    origin: 'https://linkripple.onrender.com', // Your frontend's origin
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  };
+  
+  app.use(cors(corsOptions));
+  app.use(express.json()); // Make sure to parse JSON request bodies
 
 require('dotenv');
 mongoose.connect(process.env.MONGO_URI)
