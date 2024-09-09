@@ -139,7 +139,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Image link for Profile Picture"
-                      required
+                      
                     />
                     <img
                       className="w-10 rounded-full border-2 border-white shadow-md"
@@ -170,7 +170,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Facebook ID"
-                      required
+                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -182,7 +182,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Instagram ID"
-                      required
+                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -194,7 +194,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Twitter ID"
-                      required
+                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -206,7 +206,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Linkedin ID"
-                      required
+                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -218,7 +218,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Github ID"
-                      required
+                      
                     />
                   </span>
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
@@ -230,7 +230,7 @@ const profile = () => {
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter YouTube ID @"
-                      required
+                      
                     />
                   </span>
                   <input
