@@ -63,9 +63,9 @@ export default function Home() {
     <>
       <MyHead
         title="Link Ripple"
-        description="Welcome to TypeFinance, where we help you to choose the best financing for you"
-        image="https://typefinance.com/typefinance-dp.jpg"
-        url="https://typefinance.com"
+        description="Share everything in one place and grow your digital footprint effortlessly."
+        image="https://i.postimg.cc/0ydj9fKR/s.png"
+        url="https://linkripple.onrender.com"
       />
 
       <main className="w-full h-full flex flex-col justify-center items-center bg-black">

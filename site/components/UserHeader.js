@@ -66,7 +66,7 @@ const UserHeader = () => {
           </div>
         </div>
         <div className="flex flex-row justify-center items-center">
-          <Link href={`http://localhost:3000/${handle}`}>
+          <Link href={`https://linkripple.onrender.com/${handle}`}>
             <div className="flex flex-row">
               <div className="inline-flex mr-5 text-right items-center bg-gray-200 px-5 py-2 rounded-lg">
                 <div className="text-xs md:text-md flex flex-col flex-wrap">
@@ -85,7 +85,7 @@ const UserHeader = () => {
         Welcome to your dashboard!
       </h1>
       <div className="w-full text-center pt-8 pb-12">
-        <Link href={`http://localhost:3000/${handle}`}>
+        <Link href={`https://linkripple.onrender.com/${handle}`}>
           <button className="bg-red-900 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg">
             Access your profile
           </button>
