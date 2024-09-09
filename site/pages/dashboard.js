@@ -11,7 +11,7 @@ const dashboard = () => {
   useEffect(() => {
     if (!localStorage.getItem("LinkTreeToken"))
       return (window.location.href = "/login");
-    fetch("https://link-ripple.vercel.app/data/dashboard", {
+    fetch("https://link-ripple-backend.onrender.com/data/dashboard", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
