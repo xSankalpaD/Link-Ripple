@@ -7,7 +7,7 @@ const ShareButton = () => {
     const router = useRouter();
     const copyLink = () => {
         //its part of JS clipboard API
-        navigator.clipboard.writeText(`https://link-ripple-backend.onrender.com/${router.query.handle}`);
+        navigator.clipboard.writeText(`https://linkripple.onrender.com/${router.query.handle}`);
         toast('Copied to Clipboard')
     }
     

@@ -5,7 +5,7 @@ const SocialTree = ({social}) => {
   const { facebook, twitter, instagram, youtube, linkedin, github } = social;
   return (
     <>
-      <div className="social flex flex-row justify-center my-4">
+      <div className="social flex flex-row justify-center mt-16">
         <Link
           className="bg-white rounded-full p-2 hover:bg-zinc-100 transition-all duration-500 hover:scale-110 shadow border border-gray-70 mx-1 select-none"
           target="_blank"
