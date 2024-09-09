@@ -8,7 +8,7 @@ export default function Custom404() {
             <title>404 Page not found</title>
             <meta name="My site" content="Content not found" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/images/favicon.ico" />
+            
         </Head>
         <div className="w-auto max-w-3xl bg-white rounded-xl m-auto my-20 pb-10 text-black text-center">
             <img className="w-full md:w-8/12 m-auto rounded-xl" src="https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg" alt=""/>
