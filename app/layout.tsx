@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/ReactToastify.css';
 import NavBar from "@/components/parts/NavBar";
 import { UserProvider } from "@/contexts/userContext";
 import { ToastContainer } from "react-toastify";
