@@ -16,9 +16,9 @@ const connect = async () => {
   }
 
   try {
-    mongoose.connect(MONGO_URI, {
+    await mongoose.connect(MONGO_URI, {
       dbName: "link-ripple",
-      bufferCommands: true
+      bufferCommands: true,
     });
     console.log("MongoDB Connected")
   } catch (err) {

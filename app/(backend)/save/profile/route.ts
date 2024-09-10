@@ -8,28 +8,17 @@ export const POST = async (request: Request) => {
   try {
     await connect();
 
-    const { tokenMail } = await request.json();
-    if (!tokenMail) {
-      return new Response(
-        JSON.stringify({ message: "Missing token mail", status: "error" }),
-        { status: 400 }
-      );
-    }
-    
+    const { tokenMail, name, bio, avatar } = await request.json();
     const decodedTokenMail = jwt.verify(tokenMail, SECRET_JWT) as JwtPayload;
     const email = decodedTokenMail.email;
     const user = await User.findOne({ email: email });
-    const userData = {
-      name: user?.name,
-      role: user?.role,
-      bio: user?.bio,
-      avatar: user?.avatar,
-      handle: user?.handle,
-      links: user?.links?.length || 0
-    };
+    user.name = name;
+    user.bio = bio;
+    user.avatar = avatar;
+    await user.save();
 
     return new Response(
-      JSON.stringify({ message: "User successfully loaded.", userData, status: "success" }),
+      JSON.stringify({ message: "Profile successfully saved.", status: "success" }),
       { status: 200 }
     );
 
