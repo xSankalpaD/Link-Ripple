@@ -21,7 +21,7 @@ export const GET = async (request: Request, { params }: { params: { handle: stri
       links: user.links
     }
     const socials = user.socialMedia;
-
+      //test
     return new Response(
       JSON.stringify({ message: "Sucessful found the user.", status: "success", userData, socials }),
       { status: 200 }
