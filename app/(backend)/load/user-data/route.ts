@@ -12,10 +12,16 @@ export const POST = async (request: Request) => {
     const decodedTokenMail = jwt.verify(tokenMail, SECRET_JWT) as JwtPayload;
     const email = decodedTokenMail.email;
     const user = await User.findOne({ email: email });
-    const socials = user.socialMedia;
+
+    if (!user) {
+      return new Response(
+        JSON.stringify({ message: "User not found.", status: "not-found" }),
+        { status: 500 }
+      );
+    } 
 
     return new Response(
-      JSON.stringify({ message: "Links successfully found.", status: "success" }),
+      JSON.stringify({ message: "User successfully found.", status: "success", user }),
       { status: 200 }
     );
 

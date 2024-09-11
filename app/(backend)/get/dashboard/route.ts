@@ -19,17 +19,15 @@ export const POST = async (request: Request) => {
     const decodedTokenMail = jwt.verify(tokenMail, SECRET_JWT) as JwtPayload;
     const email = decodedTokenMail.email;
     const user = await User.findOne({ email: email });
-    const userData = {
-      name: user?.name,
-      role: user?.role,
-      bio: user?.bio,
-      avatar: user?.avatar,
-      handle: user?.handle,
-      links: user?.links?.length || 0
-    };
+    if (!user) {
+      return new Response(
+        JSON.stringify({ message: "User not found.", status: "not-found" }),
+        { status: 500 }
+      );
+    } 
 
     return new Response(
-      JSON.stringify({ message: "User successfully loaded.", userData, status: "success" }),
+      JSON.stringify({ message: "User successfully loaded.", status: "success", user }),
       { status: 200 }
     );
 

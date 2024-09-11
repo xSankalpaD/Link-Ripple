@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useContext, useState, useEffect } from 'react'
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from 'react'
 import { toast } from "react-toastify";
 import { useUser } from '@/contexts/userContext';
 import UserHeader from '../parts/UserHeader';
@@ -9,7 +8,6 @@ import UserHeader from '../parts/UserHeader';
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
 const Profile = () => {
-  const router = useRouter();
   const { userData, setUserData } = useUser();
 
   const [social, setSocial] = useState({
@@ -21,9 +19,9 @@ const Profile = () => {
     github: ""
   })
 
-  const [name, setName] = useState("");
-  const [bio, setBio] = useState("");
-  const [avatar, setAvatar] = useState(
+  const [currentName, setCurrentName] = useState("");
+  const [currentBio, setCurrentBio] = useState("");
+  const [currentAvatar, setCurrentAvatar] = useState(
     "https://cdn-icons-png.flaticon.com/128/10542/10542486.png"
   );
 
@@ -34,20 +32,6 @@ const Profile = () => {
     })
   }
 
-  useEffect(() => {
-    if (userData) {
-      if (userData.name) {
-        setName(userData.name);
-      }
-      if (userData.bio) {
-        setBio(userData.bio);
-      }
-      if (userData.avatar) {
-        setAvatar(userData.avatar);
-      }
-    }
-  }, [userData]);
-
   const saveProfile = (event: any) => {
     event.preventDefault();
     fetch(`${backendLink}/save/profile`, {
@@ -57,9 +41,9 @@ const Profile = () => {
       },
       body: JSON.stringify({
         tokenMail: localStorage.getItem("LinkTreeToken"),
-        name: name,
-        bio: bio,
-        avatar: avatar
+        name: currentName,
+        bio: currentBio,
+        avatar: currentAvatar
       })
     })
       .then((res) => res.json())
@@ -67,6 +51,7 @@ const Profile = () => {
         if (data.status === "error") {
           return toast.error(data.error);
         }
+        setUserData(data.user);
         toast.success("Profile saved successfully");
       });
   };
@@ -88,6 +73,7 @@ const Profile = () => {
         if (data.status === "error") {
           return toast.error(data.error);
         }
+        setUserData(data.user);
         toast.success("Socials saved successfully");
       });
   };
@@ -97,7 +83,7 @@ const Profile = () => {
     //   return router.push("/login");
     // }
 
-    fetch(`${backendLink}/load/socials`, {
+    fetch(`${backendLink}/load/user-data`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -108,14 +94,27 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === "error") {
+        if (data.status === "success") {
+          const userData = data.user;
+          setUserData(userData)
+          if (userData) {
+            if (userData.name) {
+              setCurrentName(userData.name);
+            }
+            if (userData.bio) {
+              setCurrentBio(userData.bio);
+            }
+            if (userData.avatar) {
+              setCurrentAvatar(userData.avatar);
+            }
+          }
+        } else {
           return toast.error(data.error);
         }
-        setSocial(data.socials);
       });
   }, []);
 
-
+  
 
   return (
     <>
@@ -133,8 +132,8 @@ const Profile = () => {
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
                     <img className="w-6 mr-2" src="/svg/user.svg" alt="" />
                     <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={currentName}
+                      onChange={(e) => setCurrentName(e.target.value)}
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Set a Name"
@@ -144,8 +143,8 @@ const Profile = () => {
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
                     <img className="w-6 mr-2" src="/svg/bio.svg" alt="" />
                     <input
-                      value={bio}
-                      onChange={(e) => setBio(e.target.value)}
+                      value={currentBio}
+                      onChange={(e) => setCurrentBio(e.target.value)}
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter a bio"
@@ -155,8 +154,8 @@ const Profile = () => {
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 px-3 py-2 rounded-md focus:outline-none">
                     <img className="w-6 mr-2" src="/svg/img.svg" alt="" />
                     <input
-                      value={avatar}
-                      onChange={(e) => setAvatar(e.target.value)}
+                      value={currentAvatar}
+                      onChange={(e) => setCurrentAvatar(e.target.value)}
                       className="focus:outline-none w-full"
                       type="text"
                       placeholder="Enter Image link for Profile Picture"
@@ -164,7 +163,7 @@ const Profile = () => {
                     />
                     <img
                       className="w-10 rounded-full border-2 border-white shadow-md"
-                      src={avatar}
+                      src={currentAvatar}
                     />
                   </span>
                   <input
@@ -186,7 +185,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/facebook.svg" alt="" />
                     <input
                       id="facebook"
-                      value={social.facebook}
+                      value={social?.facebook}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"
@@ -198,7 +197,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/insta.svg" alt="" />
                     <input
                       id="instagram"
-                      value={social.instagram}
+                      value={social?.instagram}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"
@@ -210,7 +209,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/twitter.svg" alt="" />
                     <input
                       id="twitter"
-                      value={social.twitter}
+                      value={social?.twitter}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"
@@ -222,7 +221,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/linkedin.svg" alt="" />
                     <input
                       id="linkedin"
-                      value={social.linkedin}
+                      value={social?.linkedin}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"
@@ -234,7 +233,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/git.svg" alt="" />
                     <input
                       id="github"
-                      value={social.github}
+                      value={social?.github}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"
@@ -246,7 +245,7 @@ const Profile = () => {
                     <img className="w-6 mr-2" src="/svg/youtube.svg" alt="" />
                     <input
                       id="youtube"
-                      value={social.youtube}
+                      value={social?.youtube}
                       onChange={handleSocial}
                       className="focus:outline-none w-full"
                       type="text"

@@ -7,6 +7,13 @@ export const GET = async (request: Request, { params }: { params: { handle: stri
 
     const handle = params.handle;
     const user = await User.findOne({handle: handle});
+    if (!user) {
+      return new Response(
+        JSON.stringify({ message: "Did not find the user.", status: "not-found" }),
+        { status: 200 }
+      );
+    }
+
     const userData = {
       name: user.handle,
       avatar: user.avatar,

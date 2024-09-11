@@ -1,22 +1,27 @@
 "use client";
 
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import UserHeader from "../parts/UserHeader";
 import LinkBox from "../parts/LinkBox";
 import { useUser } from "@/contexts/userContext";
+import { useRouter } from "next/navigation";
 
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
 const Dashboard = () => {
+  const router = useRouter()
+
   const [data, setData] = useState<any>({});
   const { userData, setUserData } = useUser();
 
   useEffect((): any => {
-    // if (!localStorage.getItem("LinkTreeToken")) {
-    //   return (window.location.href = "/login");
-    // }
-      
+    if (!localStorage.getItem("LinkTreeToken")) {
+      router.push("/login");
+      toast("You must be logged in to access the dashboard.");
+      return;
+    }
+
     fetch(`${backendLink}/get/dashboard`, {
       method: "POST",
       headers: {
@@ -28,12 +33,14 @@ const Dashboard = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === "error") {
-          return toast.error("Error happened");
+        if (data.status === "success") {
+          const userData = data.user
+          setUserData(userData);
+          setData(userData.links);
+          localStorage.setItem("userHandle", data.userData.handle);
+        } else {
+          return toast.error(data.message);
         }
-        setData(data.userData);
-        setUserData(data.userData);
-        localStorage.setItem("userHandle", data.userData.handle);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +56,7 @@ const Dashboard = () => {
           <section className="flex flex-row items-center justify-center pt-4">
             <LinkBox
               lbTitle="Links"
-              lbNumber={data?.links}
+              lbNumber={data.length}
               lbSvg="url"
               lbTheme="red"
             />

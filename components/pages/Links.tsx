@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, useContext } from 'react'
 import { toast } from 'react-toastify';
 import UserHeader from '../parts/UserHeader';
@@ -9,7 +8,6 @@ import { useUser } from '@/contexts/userContext';
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
 const Links = () => {
-  const router = useRouter();
   const { userData, setUserData } = useUser();
 
   const [links, setLinks] = useState([{ url: '', title: '' }]);
@@ -53,13 +51,17 @@ const Links = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === "error") {
-          return toast.error(data.error);
+        if (data.status === "success") {
+          setLinks(data.newLinks)
+          toast.success("Links saved successfully");
+        } else {
+          setLinks([{ url: '', title: '' }]);
+          toast.error(data.error);
         }
-        toast.success("Links saved successfully");
       })
       .catch((err) => {
         toast.error(err.message);
+        setLinks([{ url: '', title: '' }]);
       });
   };
 
@@ -79,8 +81,14 @@ const Links = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === "error") return toast.error(data.error);
-        setLinks(data.links);
+        if (data.status === "success") {
+          const userData = data.user;
+          setUserData(userData)
+          setLinks(userData.links);
+        } else {
+          return toast.error(data.error);
+        }
+        
       });
   }, []);
 
@@ -90,7 +98,7 @@ const Links = () => {
         <UserHeader userData={userData} />
         <main>
           <section>
-            <h1 className="text-center font-bold text-xl text-gray-600">
+            <h1 className="text-center font-bold text-xl text-gray-600 py-10">
               Add or Customize your Links
             </h1>
             <div>
@@ -133,7 +141,7 @@ const Links = () => {
                     </button>
                   </div>
                 ))}
-                <div className="buttons flex flex-row gap-5 my-1">
+                <div className="buttons flex flex-row gap-5 my-1 py-8 px-32">
                   <button
                     className="bg-indigo-500 text-white px-4 py-2 rounded-md shadow-sm w-full"
                     type="button"

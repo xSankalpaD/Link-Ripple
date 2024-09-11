@@ -79,7 +79,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section>
+        <section className="overflow-hidden">
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
             {marqueeRows.map((row, index) => (
               <Marquee key={index} reverse repeat={10} className={`${row.duration} ${row.delay}`}>
