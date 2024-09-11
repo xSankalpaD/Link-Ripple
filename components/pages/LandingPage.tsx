@@ -62,7 +62,7 @@ const marqueeIcons = [
 export default function Home() {
   return (
     <>
-      <main className="w-full h-full flex flex-col justify-center items-center bg-black">
+      <main className="w-full h-full flex flex-col justify-center items-center bg-black overflow-hidden">
         <section className="flex flex-col justify-center items-center mx-4 md:m-32 max-w-[80rem]">
           <h1 className="pt-20 text-center bg-gradient-to-br from-white from-30% to-white/40 bg-clip-text py-6 text-4xl font-medium leading-tight tracking-tighter text-transparent sm:text-5xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
             One link to rule them all.
