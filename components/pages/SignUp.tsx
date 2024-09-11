@@ -13,13 +13,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [category, setCategory] = useState("");
-  const [submitted, setSubmitted] = useState(false);
  
-  const handleCategoryChange = (event: any) => {
+  const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
  
-  const handleRegister = (event: any) => {
+  const handleRegister = (event) => {
     event.preventDefault();
 
     if (!category) {
@@ -44,13 +43,13 @@ const Register = () => {
           toast("You have registered successfully!");
           toast("You should able to log in below.");
           localStorage.setItem("LinkTreeToken", data.token);
-          setSubmitted(true);
           router.push("/login");
         } else if (data.status === "error") {
           toast(data.message);
         }
       })
       .catch((err) => {
+        console.log(err);
         toast.error("Something went wrong.");
       });
   };

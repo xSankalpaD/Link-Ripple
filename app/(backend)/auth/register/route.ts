@@ -1,8 +1,8 @@
 import connect from "@/lib/db";
 import User from "@/lib/models/user"
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-const SECRET_JWT = process.env.NEXT_PUBLIC_SECRET_JWT as string;
+const SECRET_JWT = process.env.SECRET_JWT as string;
 
 export const POST = async (request: Request) => {
   try {
@@ -19,14 +19,19 @@ export const POST = async (request: Request) => {
       { status: 200 }
     );
 
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.log(err)
-    if (err.code == 11000) {
-      return new Response(
-        JSON.stringify({ message: "Try a different handle or email.", status: "error" }),
-        { status: 500 }
-      );
+
+    if (typeof err === "object" && err !== null && "code" in err) {
+      const error = err as { code: number };
+      if (error.code === 11000) {
+        return new Response(
+          JSON.stringify({ message: "Try a different handle or email.", status: "error" }),
+          { status: 500 }
+        );
+      }
     }
+
     return new Response(
       JSON.stringify({ message: "An error occurred", status: "error" }),
       { status: 500 }

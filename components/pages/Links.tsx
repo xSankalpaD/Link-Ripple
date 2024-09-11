@@ -1,19 +1,21 @@
 "use client";
 
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import UserHeader from '../parts/UserHeader';
 import { useUser } from '@/contexts/userContext';
+import { useRouter } from 'next/navigation';
 
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
 const Links = () => {
+  const router = useRouter()
   const { userData, setUserData } = useUser();
 
   const [links, setLinks] = useState([{ url: '', title: '' }]);
-  const [title, setTitle] = useState('');
+  const [title] = useState('');
 
-  const handleLinkChange = (index: any, field: any, value: any) => {
+  const handleLinkChange = (index, field, value) => {
     const updatedLinks = [...links];
     const linkToUpdate = { ...updatedLinks[index], [field]: value };
     updatedLinks[index] = linkToUpdate;
@@ -24,13 +26,13 @@ const Links = () => {
     setLinks([...links, { url: "", title: "" }]);
   };
 
-  const handleRemoveLink = (index: any) => {
+  const handleRemoveLink = (index) => {
     const updatedLinks = [...links];
     updatedLinks.splice(index, 1);
     setLinks(updatedLinks);
   };
 
-  const saveLinks = (event: any) => {
+  const saveLinks = (event) => {
     event.preventDefault();
     const linksArray = Object.values(links);
     const titlesArray = Object.values(title);
@@ -66,9 +68,9 @@ const Links = () => {
   };
 
   useEffect(() => {
-    // if (!localStorage.getItem("LinkTreeToken")) {
-    //   router.push("/login");
-    // }
+    if (!localStorage.getItem("LinkTreeToken")) {
+      router.push("/login");
+    }
 
     fetch(`${backendLink}/load/links`, {
       method: "POST",
@@ -90,7 +92,7 @@ const Links = () => {
         }
         
       });
-  }, []);
+  }, [setUserData, router]);
 
   return (
     <>

@@ -2,7 +2,7 @@ import connect from "@/lib/db";
 import User from "@/lib/models/user"
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-const SECRET_JWT = process.env.NEXT_PUBLIC_SECRET_JWT as string;
+const SECRET_JWT = process.env.SECRET_JWT as string;
 
 export const POST = async (request: Request) => {
   try {
@@ -25,14 +25,12 @@ export const POST = async (request: Request) => {
     user.avatar = avatar;
     await user.save();
 
-    console.log(user)
-
     return new Response(
       JSON.stringify({ message: "Profile successfully saved.", status: "success", user }),
       { status: 200 }
     );
 
-  } catch (err) {
+  } catch (err: unknown) {
     console.log(err);
     return new Response(
       JSON.stringify({ message: "An error occurred.", status: "error" }),

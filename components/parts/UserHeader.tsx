@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
-const UserHeader = ({userData}: any) => {
+const UserHeader = ({userData}) => {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -18,19 +18,19 @@ const UserHeader = ({userData}: any) => {
         <div className="flex flex-col md:flex-row p-5">
           <Link href="/links">
             <button className="inline-flex w-full md:w-auto px-5 py-3 text-purple-500 font-bold hover:text-purple-700 hover:bg-purple-100 rounded-md mb-3 border-2 border-purple-500">
-              <img src="/svg/url.svg" className="w-6 mr-3" />
+              <img src="/svg/url.svg" alt="url" className="w-6 mr-3" />
               Edit Links
             </button>
           </Link>
           <Link href="/profile">
             <button className="inline-flex w-full md:w-auto px-5 py-3 text-red-500 font-bold hover:text-red-700 hover:bg-red-100 rounded-md mb-3 border-2 border-red-500 md:ml-4">
-              <img src="/svg/user.svg" className="w-6 mr-3" />
+              <img src="/svg/user.svg" alt="user" className="w-6 mr-3" />
               Edit profile
             </button>
           </Link>
           <div onClick={handleLogout}>
             <button className="inline-flex w-full md:w-auto px-5 py-3 text-yellow-500 font-bold hover:text-yellow-700 hover:bg-yellow-100 rounded-md mb-3 border-2 border-yellow-500 md:ml-4">
-              <img src="/svg/logout.svg" className="w-6 mr-3" />
+              <img src="/svg/logout.svg" alt="logout" className="w-6 mr-3" />
               Logout
             </button>
           </div>
@@ -44,7 +44,7 @@ const UserHeader = ({userData}: any) => {
                   <span>{userData?.role}</span>
                 </div>
                 <div className="user-img">
-                  <img className="w-10 ml-5 rounded-full" src={userData?.avatar} />
+                  <img className="w-10 ml-5 rounded-full" src={userData?.avatar} alt="avatar"/>
                 </div>
               </div>
             </div>

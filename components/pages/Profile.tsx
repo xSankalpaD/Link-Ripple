@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react'
 import { toast } from "react-toastify";
 import { useUser } from '@/contexts/userContext';
 import UserHeader from '../parts/UserHeader';
+import { useRouter } from 'next/navigation';
 
 const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 
 const Profile = () => {
+  const router = useRouter();
   const { userData, setUserData } = useUser();
 
   const [social, setSocial] = useState({
@@ -25,14 +27,14 @@ const Profile = () => {
     "https://cdn-icons-png.flaticon.com/128/10542/10542486.png"
   );
 
-  const handleSocial = (event: any) => {
+  const handleSocial = (event) => {
     setSocial({
       ...social,
       [event.target.id]: event.target.value
     })
   }
 
-  const saveProfile = (event: any) => {
+  const saveProfile = (event) => {
     event.preventDefault();
     fetch(`${backendLink}/save/profile`, {
       method: "POST",
@@ -56,7 +58,7 @@ const Profile = () => {
       });
   };
 
-  const saveSocials = (event: any) => {
+  const saveSocials = (event) => {
     event.preventDefault();
     fetch(`${backendLink}/save/socials`, {
       method: "POST",
@@ -79,9 +81,9 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    // if (!localStorage.getItem("LinkTreeToken")) {
-    //   return router.push("/login");
-    // }
+    if (!localStorage.getItem("LinkTreeToken")) {
+      return router.push("/login");
+    }
 
     fetch(`${backendLink}/load/user-data`, {
       method: "POST",
@@ -112,7 +114,7 @@ const Profile = () => {
           return toast.error(data.error);
         }
       });
-  }, []);
+  }, [setUserData, router]);
 
   
 
@@ -164,6 +166,7 @@ const Profile = () => {
                     <img
                       className="w-10 rounded-full border-2 border-white shadow-md"
                       src={currentAvatar}
+                      alt="avatar"
                     />
                   </span>
                   <input

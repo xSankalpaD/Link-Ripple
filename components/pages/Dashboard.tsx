@@ -12,10 +12,10 @@ const backendLink = process.env.NEXT_PUBLIC_BACKEND_LINK;
 const Dashboard = () => {
   const router = useRouter()
 
-  const [data, setData] = useState<any>({});
+  const [links, setLinks] = useState(0);
   const { userData, setUserData } = useUser();
 
-  useEffect((): any => {
+  useEffect(() => {
     if (!localStorage.getItem("LinkTreeToken")) {
       router.push("/login");
       toast("You must be logged in to access the dashboard.");
@@ -36,7 +36,7 @@ const Dashboard = () => {
         if (data.status === "success") {
           const userData = data.user
           setUserData(userData);
-          setData(userData.links);
+          setLinks(userData?.links.length);
           localStorage.setItem("userHandle", data.userData.handle);
         } else {
           return toast.error(data.message);
@@ -45,7 +45,7 @@ const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [router, setUserData]);
 
 
   return (
@@ -56,7 +56,7 @@ const Dashboard = () => {
           <section className="flex flex-row items-center justify-center pt-4">
             <LinkBox
               lbTitle="Links"
-              lbNumber={data.length}
+              lbNumber={links}
               lbSvg="url"
               lbTheme="red"
             />

@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 const marqueeRows = [
   {
     duration: "[--duration:10s]",
-    delay: "delay-[200ms]",
+    delay: "delay-&lsqb;200ms&rsqb;",
   },
   {
     duration: "[--duration:25s]",
@@ -16,7 +16,7 @@ const marqueeRows = [
   },
   {
     duration: "[--duration:20s]",
-    delay: "delay-[200ms]",
+    delay: "delay-&lsqb;200ms&rsqb;",
   },
   {
     duration: "[--duration:30s]",
@@ -24,7 +24,7 @@ const marqueeRows = [
   },
   {
     duration: "[--duration:20s]",
-    delay: "delay-[200ms]",
+    delay: "delay-&lsqb;200ms&rsqb;",
   },
   {
     duration: "[--duration:30s]",
@@ -118,7 +118,7 @@ export default function Home() {
         </section>
         <section>
           <div className="flex flex-row items-center justify-center mb-8">
-            <img src="/images/logo.png" className="h-8 sm:h-14"/>
+            <img src="/images/logo.png" alt="logo" className="h-8 sm:h-14"/>
           </div>
           <div>
             <p className="text-xs sm:text-sm text-center text-gray-400 mb-10">

@@ -1,11 +1,11 @@
 "use client";
 
-import { UserData } from '@/lib/models/user';
+import { UserDataType } from '@/lib/models/user';
 import { createContext, useContext, useState } from 'react';
 
 type UserContextType = {
-  userData: UserData | null;
-  setUserData: React.Dispatch<React.SetStateAction<UserData | null>>
+  userData: UserDataType | null;
+  setUserData: React.Dispatch<React.SetStateAction<UserDataType | null>>
 }
 
 const UserContext = createContext<UserContextType | null>(null);
@@ -15,7 +15,7 @@ type UserProviderProps = {
 }
 
 export const UserProvider = ({children}: UserProviderProps) => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserDataType | null>(null);
   const value = {
     userData, setUserData
   };

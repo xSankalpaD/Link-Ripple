@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType, model, models, Schema } from "mongoose";
+import { InferSchemaType, model, models, Schema } from "mongoose";
 
 const UserSchema = new Schema({
   name: { type: String },
@@ -24,7 +24,7 @@ const UserSchema = new Schema({
   }
 }, { collection: 'user-data-linktree' });
 
-export type UserData = InferSchemaType<typeof UserSchema>;
+export type UserDataType = InferSchemaType<typeof UserSchema>;
 
 const User = models["userData"] || model("userData", UserSchema);
 

@@ -49,7 +49,7 @@ const Handle = ({ handle }: { handle: string }) => {
       <div className="flex justify-center items-center flex-grow">
         <div className="flex justify-center items-center flex-col px-3 ">
           <h1 className="font-bold text-lg">User Not found 🙁</h1>
-          <p>If you're looking for a page, double check the spelling.</p>
+          <p>If you&apos;re looking for a page, double check the spelling.</p>
           <p>
             To create your own Link Ripple click the link below.
             

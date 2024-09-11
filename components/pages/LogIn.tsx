@@ -12,7 +12,7 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  
-  const handleLogin = (event: any) => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     fetch(`${backendLink}/auth/login`, {

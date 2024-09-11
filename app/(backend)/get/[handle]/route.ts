@@ -27,7 +27,7 @@ export const GET = async (request: Request, { params }: { params: { handle: stri
       { status: 200 }
     );
 
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.log(err)
     return new Response(
       JSON.stringify({ message: "An error occurred", status: "error" }),

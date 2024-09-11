@@ -2,7 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion';
 import LinkTreeCard from './LinkTreeCard';
 
-const LinkTree = ({data}: any) => {
+const LinkTree = ({data}) => {
   const { name, avatar, bio, links } = data;
   return (
     <>
@@ -18,7 +18,7 @@ const LinkTree = ({data}: any) => {
         <p className="text-center pb-5">{bio}</p>
         <div className="flex flex-col justify-center max-w-7xl m-auto md:my-5 w-full md:w-2/5">
           <AnimatePresence>
-            {links.map((link: any, index: any) => (
+            {links.map((link, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
